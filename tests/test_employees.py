@@ -22,3 +22,14 @@ def test_show_bonus_prints(capsys):
     captured = capsys.readouterr()
     assert "John - Bonus: 100.0" in captured.out
     assert "[LOG] Bonus action registered." in captured.out
+
+def test_list_bonuses(capsys):
+    hr = HRSystem()
+    e1 = RegularEmployee("John", 1000)
+    e2 = Manager("Mary", 2000, 500)
+    hr.register_employee(e1)
+    hr.register_employee(e2)
+    hr.list_bonuses()
+    captured = capsys.readouterr()
+    assert "John - Bonus: 100.0" in captured.out
+    assert "Mary - Bonus: 900.0" in captured.out
